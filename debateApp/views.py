@@ -15,14 +15,21 @@ class debateInfo(APIView):
         return Response(serializedData.data)
 
     def post(self,request):
-        data=request.data
-        listUserData=data["user_ids"].split(",")
-        userProfileData=UserProfile.objects.filter(id__in=listUserData)
+        try:
+            data=request.data
+            listUserData=data["user_ids"].split(",")
+            userProfileData=UserProfile.objects.filter(id__in=listUserData)
 
-        created_debate=Debate.objects.create(topic_id=data["topic"])
-        created_debate.users.set(userProfileData)    # added many field by using set method 
+            created_debate=Debate.objects.create(topic_id=data["topic"])
+            created_debate.users.set(userProfileData)    # added many to many field by using set method 
+            # created_debate.users.add(userProfileData[0])   # adding single user object in many to many field 
 
-        return Response(data)
+            serializer=DebetSerializer(created_debate)
+
+            return Response(serializer.data)
+
+        except Exception as e:
+            return Response({"message":str(e)})
 
 
 

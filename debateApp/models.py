@@ -51,6 +51,7 @@ class Debate(models.Model):
     topic=models.ForeignKey("DebateList",on_delete=models.CASCADE,null=True,blank=True)
     created_at=models.DateTimeField(default=datetime.datetime.now())
     is_deleted=models.BooleanField(default=False)
+    is_tarminated=models.BooleanField(default=False)
 
     # def __str__(self) -> str:
     #     return self.user1
