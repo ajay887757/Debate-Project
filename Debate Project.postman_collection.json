@@ -30,12 +30,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{local}}/redDebateList/",
+					"raw": "{{local}}/readDebateList/",
 					"host": [
 						"{{local}}"
 					],
 					"path": [
-						"redDebateList",
+						"readDebateList",
 						""
 					]
 				}
@@ -54,6 +54,88 @@
 					],
 					"path": [
 						"debateInfo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostNewDebate Topic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"debateTopic\"  :\"Work From Office\",\n  \"debateDescription\":\"due to covid trends in IT industry has been changed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/PostNewDebate/",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"PostNewDebate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Api",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\"  :\"anupam@gmail.com\",\n  \"password\":\"Anupam@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/Custom/login/",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"Custom",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Api Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\"  :\"anupam@gmail.com\",\n  \"password\":\"Anupam@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/login/",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"login",
 						""
 					]
 				}

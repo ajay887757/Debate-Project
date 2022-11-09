@@ -4,10 +4,36 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Debate,UserProfile,DebateList
 from .serializer import DebetSerializer,DebateListSerializer
-
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
 # Create your views here.
 
 
+class customLogin(APIView):
+    def post(self,request):
+        try:
+            data=request.data
+            email=data.get("email")
+            password=data.get("password")
+            user_Data = UserProfile.objects.filter(email__exact=email,email__contains=email)
+            if user_Data.exists():
+                authUser = authenticate(
+                    email=email, password=password
+                )
+                if authUser:
+                    RefrestTokenData = RefreshToken.for_user(user_Data.first())
+                    Token_Data = {
+                        "access": str(RefrestTokenData.access_token),
+                        "refresh": str(RefrestTokenData),
+                        "Message": "Token Generated Successfully",
+                    }
+
+                    return Response(Token_Data, status=status.HTTP_200_OK)
+
+            return Response({"message":"Invalid Credential"})
+
+        except Exception as e:
+            return Response({"message":str(e)})
 class debateInfo(APIView):
     def get(self,request):
         allData=Debate.objects.all()
