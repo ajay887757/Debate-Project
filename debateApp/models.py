@@ -5,6 +5,7 @@ from operator import mod
 from pyexpat import model
 from django.db import models
 import datetime
+from django.utils import timezone
 from django.contrib.auth.hashers import make_password
 
 class Role(models.Model):
@@ -37,7 +38,7 @@ class DebateList(models.Model):
     DebateTopic=models.CharField(max_length=100,null=True,)
     description=models.TextField()
     is_approved=models.BooleanField(default=False)
-    created_at=models.DateTimeField(default=datetime.datetime.now())
+    created_at=models.DateTimeField(default=datetime.datetime.now(tz=timezone.utc))
     is_deleted=models.BooleanField(default=False)
 
     def __str__(self) -> str:

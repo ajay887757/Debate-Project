@@ -51,6 +51,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'debate.urls'
+# AUTH_USER_MODEL = "debateApp.UserProfile"  use to create coustom use 
 
 TEMPLATES = [
     {
